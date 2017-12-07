@@ -133,10 +133,17 @@ public class Upgrade {
     }
 
     private String getInfoMessage() {
-        if (this.clicksPerSecond == 1) {
-            return this.name + ": Produces " + this.clicksPerSecond + " Click Per Second";
+        String cps = "";
+        if (this.clicksPerSecond == (int) this.clicksPerSecond) {
+            cps += (int) this.clicksPerSecond;
         } else {
-            return this.name + ": Produces " + this.clicksPerSecond + " Clicks Per Second";
+            cps += this.clicksPerSecond;
+        }
+
+        if (this.clicksPerSecond == 1) {
+            return this.name + ": Produces " + cps + " Click Per Second";
+        } else {
+            return this.name + ": Produces " + cps + " Clicks Per Second";
         }
     }
 

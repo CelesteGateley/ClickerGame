@@ -114,7 +114,7 @@ public class Game {
            Update Screen Panel
          */
 
-        upgradeScreen = new JPanel(new GridLayout((upgrades.size() + 2), 1));
+        upgradeScreen = new JPanel(new GridLayout(3, 1));
 
         /*
             Creates the back button
@@ -131,10 +131,15 @@ public class Game {
 
         upgradeScreen.add(balanceLabel);
 
+        JPanel upgradesPanel = new JPanel(new GridLayout(upgrades.size(), 1));
+
         for (Upgrade u : upgrades) {
-            upgradeScreen.add(u.getUpgradeSection());
+            upgradesPanel.add(u.getUpgradeSection());
         }
 
+        JScrollPane upgradesPane = new JScrollPane(upgradesPanel);
+
+        upgradeScreen.add(upgradesPane);
         upgradeScreen.add(backButton);
 
         /*
