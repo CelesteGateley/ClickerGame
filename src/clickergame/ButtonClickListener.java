@@ -8,7 +8,7 @@ public class ButtonClickListener implements ActionListener {
 
     private Game instance;
 
-    public ButtonClickListener(Game instance) {
+    ButtonClickListener(Game instance) {
         this.instance = instance;
     }
 

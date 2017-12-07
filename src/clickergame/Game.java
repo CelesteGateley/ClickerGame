@@ -2,8 +2,6 @@ package clickergame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
@@ -22,8 +20,6 @@ public class Game {
     private java.util.Timer autoClicker = new java.util.Timer();
 
     private String title = "Clicker Game";
-
-    public Game instance;
 
     private long score = 0;
 
@@ -69,7 +65,6 @@ public class Game {
     }
 
     private Game() {
-        instance = this;
         initialise();
     }
 
@@ -166,7 +161,7 @@ public class Game {
 
     }
 
-    public boolean adjustScore(double amount) {
+    boolean adjustScore(double amount) {
 
         if (score + amount >= 0) {
             score += amount;
@@ -187,24 +182,24 @@ public class Game {
         }
     }
 
-    public void redrawFrame() {
+    void redrawFrame() {
         frame.repaint();
         frame.setVisible(true);
     }
 
-    public void displayUpgrades() {
+    void displayUpgrades() {
         frame.getContentPane().removeAll();
         frame.add(upgradeScreen);
         redrawFrame();
     }
 
-    public void displayGame() {
+    void displayGame() {
         frame.getContentPane().removeAll();
         frame.add(gameScreen);
         redrawFrame();
     }
 
-    public ArrayList<Upgrade> getUpgrades() {
+    ArrayList<Upgrade> getUpgrades() {
         return upgrades;
     }
 }

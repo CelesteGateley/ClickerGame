@@ -116,7 +116,7 @@ public class Upgrade {
         this.rawPlural = pluralRaw;
     }
 
-    public String getRawName() {
+    String getRawName() {
         return rawName;
     }
 
@@ -124,15 +124,15 @@ public class Upgrade {
         this.rawName = rawName;
     }
 
-    public String getAmountMessage() {
+    private String getAmountMessage() {
         return String.format("<html><center>Amount:<br />%d</center></html>", this.amount);
     }
 
-    public String getPriceMessage() {
+    private String getPriceMessage() {
         return String.format("<html><center>Price:<br />%d</center></html>", this.cost);
     }
 
-    public String getInfoMessage() {
+    private String getInfoMessage() {
         if (this.clicksPerSecond == 1) {
             return this.name + ": Produces " + this.clicksPerSecond + " Click Per Second";
         } else {
@@ -140,22 +140,22 @@ public class Upgrade {
         }
     }
 
-    public void purchase() {
+    void purchase() {
         this.amount++;
         this.cost = (long) (baseCost * (Math.pow(1.15, this.amount)));
     }
 
-    public double getClicks() {
+    double getClicks() {
         return this.amount * this.clicksPerSecond;
     }
 
-    public void updateLabels() {
+    void updateLabels() {
         this.infoLabel.setText(this.getInfoMessage());
         this.amountLabel.setText(this.getAmountMessage());
         this.priceLabel.setText(this.getPriceMessage());
     }
 
-    public JPanel getUpgradeSection() {
+    JPanel getUpgradeSection() {
         this.updateLabels();
 
         JPanel section = new JPanel(new GridLayout(2,1));
