@@ -21,7 +21,7 @@ public class Game {
 
     private String title = "Clicker Game";
 
-    private long score = 0;
+    private double score = 0;
 
     /*
         Upgrades Setup
@@ -30,9 +30,9 @@ public class Game {
     private ArrayList<Upgrade> upgrades = new ArrayList<>();
 
 
-    private Upgrade cursor = new Upgrade("cursor", 15, 1, this);
-    private Upgrade granny = new Upgrade("granny", "grannies", 100, 2, this);
-    private Upgrade farm = new Upgrade("farm", 500, 5, this);
+    private Upgrade cursor = new Upgrade("cursor", 15, 0.1, this);
+    private Upgrade granny = new Upgrade("granny", "grannies", 100, 0.4, this);
+    private Upgrade farm = new Upgrade("farm", 500, 1, this);
 
     {
         upgrades.add(cursor);
@@ -45,8 +45,8 @@ public class Game {
 
     private JButton clickerButton = new JButton("Click for Points");
 
-    private JLabel scoreLabel = new JLabel(score + " Clicks!", CENTER);
-    private JLabel balanceLabel = new JLabel(score + " Clicks!", CENTER);
+    private JLabel scoreLabel = new JLabel((int) score + " Clicks!", CENTER);
+    private JLabel balanceLabel = new JLabel((int) score + " Clicks!", CENTER);
 
     private JPanel gameScreen;
     private JPanel upgradeScreen;
@@ -74,7 +74,7 @@ public class Game {
          * Creates the main game frame
          */
 
-        frame.setBounds(100, 100, 600, 450);
+        frame.setBounds(100, 100, 450, 300);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         /*
@@ -169,13 +169,21 @@ public class Game {
     boolean adjustScore(double amount) {
 
         if (score + amount >= 0) {
-            score += amount;
-            String scoreString;
+
+            score = Math.round((score + amount) * 10) / 10;
+
+            String scoreString = "";
+
+            if (score == (int) score) {
+                scoreString += (int) score;
+            } else {
+                scoreString += score;
+            }
 
             if (score == 1) {
-                scoreString = (score + " Click!");
+                scoreString += " Click!";
             } else {
-                scoreString = (score + " Clicks!");
+                scoreString += " Clicks!";
             }
             scoreLabel.setText(scoreString);
             balanceLabel.setText(scoreString);
